@@ -727,7 +727,7 @@ Array.prototype.forEach.call(document.querySelectorAll('img[data-copy]'), functi
   var start = 'ru';
   try { start = localStorage.getItem('lang') || 'ru'; } catch(e){}
   var h = location.hash.slice(1);
-  if (h === 'ua' || h === 'ru') { start = h; location.hash = ''; }
+  if (h === 'ua' || h === 'ru') { start = h; try { history.replaceState(null, '', location.pathname + location.search); } catch(e){ location.hash = ''; } }
   setLang(start);
 
   window.addEventListener('hashchange', render);
