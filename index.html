@@ -3,8 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ярослав Пономаренко</title>
+<title>Ярослав Пономаренко — психолог, психотерапевт. Батуми и онлайн</title>
 <meta name="description" content="Консультант, аналитик, психотерапевт, психолог. Консультирование, чтения, кино-лаборатория.">
+<link rel="canonical" href="https://ponomarenko-yar.org/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ярослав Пономаренко">
+<meta property="og:title" content="Ярослав Пономаренко — психолог, психотерапевт. Батуми и онлайн">
+<meta property="og:description" content="Консультант, аналитик, психотерапевт, психолог. Консультирование, чтения, кино-лаборатория.">
+<meta property="og:url" content="https://ponomarenko-yar.org/">
+<meta property="og:image" content="https://ponomarenko-yar.org/portrait.jpg">
+<meta property="og:image:width" content="520">
+<meta property="og:image:height" content="793">
+<meta property="og:image:alt" content="Ярослав Пономаренко">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="uk_UA">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -283,7 +297,8 @@
     <p>Содержание встреч с ребёнком родителям не передаётся. Исключения — сведения о криминальных преступлениях и кризисные обстоятельства, при которых есть угроза жизни и здоровью ребёнка.</p>
     <p>С подростками работа начинается только при их собственном согласии. Записать подростка без его ведома невозможно: без согласия консультирование не имеет смысла.</p>
 
-    <p class="note">К этому разделу относятся тексты: <a href="#a-net">Чего нет в психотерапии и анализе</a>, <a href="#a-zakrytost">Почему я не работаю с полной закрытостью</a>, <a href="#a-podrostki">Почему подростки не дети, а дети не подростки</a>.</p>
+    <p>Договориться о встрече можно в разделе <a href="#contact">«Связь»</a>.</p>
+<p class="note">К этому разделу относятся тексты: <a href="#a-net">Чего нет в психотерапии и анализе</a>, <a href="#a-zakrytost">Почему я не работаю с полной закрытостью</a>, <a href="#a-podrostki">Почему подростки не дети, а дети не подростки</a>.</p>
   </div></div>
   <div class="l l-ua" hidden><div class="marg"><svg class="ill" viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path class="f" d="M9 70H111"/><path d="M19 20V70M19 48H43V70M101 20V70M101 48H77V70"/></svg><em>Консультування</em>умови роботи</div><div class="body"><h2>Консультування</h2>
     <p>У своїй практиці я використовую «Проблемно-символічний підхід», який включає в себе засоби психоаналізу, феноменології, Dasein-аналітики, екзистенційного напряму та онтологічної герменевтики. Сам підхід входить до методу Символдрами.</p>
@@ -320,6 +335,7 @@
 <p>Якщо зустрічі проходять без батьків, проводяться окремі батьківські сесії раз на місяць-півтора.</p>
 <p>Зміст зустрічей з дитиною батькам не передається. Винятки — відомості про кримінальні злочини та кризові обставини, за яких є загроза життю і здоров'ю дитини.</p>
 <p>З підлітками робота починається лише за їхньої власної згоди. Записати підлітка без його відома неможливо: без згоди консультування не має сенсу.</p>
+<p>Домовитися про зустріч можна в розділі <a href="#contact">«Зв'язок»</a>.</p>
 <p class="note">До цього розділу належать тексти: <a href="#a-net">Чого немає в психотерапії та аналізі</a>, <a href="#a-zakrytost">Чому я не працюю з повною закритістю</a>, <a href="#a-podrostki">Чому підлітки не діти, а діти не підлітки</a>.</p></div></section>
 
 <section class="block page" id="articles" hidden>
@@ -784,7 +800,7 @@ Array.prototype.forEach.call(document.querySelectorAll('img[data-copy]'), functi
     if(!target || !target.classList.contains('page')){ id = 'home'; target = document.getElementById(id); }
     pages.forEach(function(p){ p.hidden = (p !== target); });
     navLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + id); });
-    document.title = (titles[id] ? titles[id] + ' — ' : '') + 'Ярослав Пономаренко';
+    document.title = (id === 'home' || !titles[id]) ? 'Ярослав Пономаренко — психолог, психотерапевт. Батуми и онлайн' : titles[id] + ' — Ярослав Пономаренко';
     document.body.classList.toggle('at-home', id === 'home');
     // на телефоне внутренние разделы открываются сразу с начала раздела, а не с шапки
     var narrow = window.matchMedia && window.matchMedia('(max-width:720px)').matches;
