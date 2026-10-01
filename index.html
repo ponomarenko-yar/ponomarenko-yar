@@ -850,5 +850,17 @@
   render();
 })();
 </script>
+<script>
+// статистика посещений: GoatCounter, без cookies и персональных данных
+window.goatcounter = {no_onload: true};
+function gcCount(){
+  if (!window.goatcounter || !window.goatcounter.count) return;
+  var id = location.hash.slice(1) || 'home';
+  if (id === 'ua' || id === 'ru') id = 'home';
+  window.goatcounter.count({path: id === 'home' ? '/' : '/#' + id, title: document.title});
+}
+window.addEventListener('hashchange', gcCount);
+</script>
+<script data-goatcounter="https://ponomarenko-yar.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="gcCount()"></script>
 </body>
 </html>
