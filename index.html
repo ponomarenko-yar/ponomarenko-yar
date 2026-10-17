@@ -36,8 +36,8 @@
   @font-face{font-family:'Golos Text'; font-style:normal; font-weight:400; font-display:swap; src:url(fonts/golos-text-latin-400-normal.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
   :root{
-    --paper:#E7EAE6; --ink:#1E2A2F; --ink-soft:#5A666C;
-    --rule:#C6CBC5; --accent:#35594F; --measure:62ch; --rail:172px;
+    --paper:#E4E9EE; --ink:#1E2A2F; --ink-soft:#56636B;
+    --rule:#C2CBD3; --accent:#35594F; --measure:62ch; --rail:172px;
     box-sizing:border-box;
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
@@ -61,7 +61,12 @@
     font-size:20px; line-height:1.68;
     font-feature-settings:"onum" 1; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:980px; margin:0 auto; padding:0 26px 100px}
+  .wrap{max-width:980px; margin:0 auto; padding:0 26px 40px;
+        display:flex; flex-direction:column;
+        min-height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+        min-height:calc(100svh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+  .wrap>.page{flex:1 0 auto}
+  .wrap>.head,.wrap>.foot{flex:0 0 auto}
 
   /* ---- шапка ---- */
   .head{padding:72px 0 30px; border-bottom:1px solid var(--rule)}
@@ -75,6 +80,11 @@
   p.l-ru[hidden], p.l-ua[hidden], span.l-ru[hidden], span.l-ua[hidden]{display:none}
   .lang a.on{color:var(--ink); border-color:transparent; pointer-events:none}
   .lang a{margin-right:16px}
+  .theme-btn{font:inherit; background:none; border:0; border-bottom:1px solid currentColor;
+             padding:0 0 2px; margin:0; color:var(--ink-soft); cursor:pointer; border-radius:0}
+  .theme-btn:hover{color:var(--accent); border-color:var(--accent)}
+  .theme-btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  .lang .sep{display:inline-block; width:1px; height:.9em; background:var(--rule); margin:0 16px 0 0; vertical-align:-1px}
   .lang{margin:-4px 0 14px; text-align:left;
         font-family:"Golos Text",system-ui,sans-serif; font-size:14.5px}
   .lang .cur{color:var(--ink); margin-right:14px}
@@ -158,7 +168,7 @@
 
   @media (max-width:720px){
     body{font-size:19px}
-    .wrap{padding:0 20px 72px}
+    .wrap{padding:0 20px 32px}
     .head{padding:48px 0 26px}
     .block,.foot{grid-template-columns:1fr; gap:14px}
     .marg{position:static; padding-top:0; margin-bottom:14px}
@@ -168,13 +178,17 @@
     .rows .when{padding-top:0}
   }
 </style>
+<script>
+// сохранённый выбор темы применяется до отрисовки страницы
+(function(){ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
+</script>
 </head>
 <body>
 <div class="wrap">
 
 <header class="head">
   <h1 class="name"><a href="#home">Ярослав Пономаренко</a></h1>
-  <div class="lang"><a href="#" data-lang="ua">Українською</a><a href="#" data-lang="ru">Русский</a></div>
+  <div class="lang"><a href="#" data-lang="ua">Українською</a><a href="#" data-lang="ru">Русский</a><span class="sep" aria-hidden="true"></span><button type="button" class="theme-btn" id="theme-btn"><span class="l l-ru" data-dark="Тёмная тема" data-light="Светлая тема">Тёмная тема</span><span class="l l-ua" hidden data-dark="Темна тема" data-light="Світла тема">Темна тема</span></button></div>
   <p class="role l l-ru">
     <span>Консультант, аналитик, психотерапевт, психолог.</span>
     <span>Проблемно-символический подход.</span>
@@ -199,7 +213,7 @@
 <section class="block page" id="home" hidden>
   <div class="l l-ru"><div class="marg"><img class="portrait" alt="Ярослав Пономаренко" src="portrait.jpg" width="520" height="793" fetchpriority="high"></div><div class="body">
     <ul class="pieces">
-      <li><a href="#practice"><span class="t">Консультирование</span><span class="d">Условия для работы со взрослыми, с детьми и подростками.</span></a></li>
+      <li><a href="#practice"><span class="t">Консультирование</span><span class="d">Условия для работы со взрослыми, парами, с детьми и подростками.</span></a></li>
       <li><a href="#readings"><span class="t">Чтения</span><span class="d">Тем, кому интересно понимание себя и возможности мышления и управления собой.</span></a></li>
       <li><a href="#kino"><span class="t">Кино-лаборатория</span><span class="d">Про авторское кино, разбор драматургии.</span></a></li>
       <li><a href="#articles"><span class="t">Статьи</span><span class="d">О том, чего в работе нет, о болезни, о привычке и зависимости, о детях и подростках, об искусстве.</span></a></li>
@@ -209,7 +223,7 @@
     </ul>
   </div></div>
   <div class="l l-ua" hidden><div class="marg"><img class="portrait" alt="Ярослав Пономаренко" src="portrait.jpg" width="520" height="793" loading="lazy" decoding="async"></div><div class="body"><ul class="pieces">
-<li><a href="#practice"><span class="t">Консультування</span><span class="d">Умови для роботи з дорослими, з дітьми та підлітками.</span></a></li>
+<li><a href="#practice"><span class="t">Консультування</span><span class="d">Умови для роботи з дорослими, парами, з дітьми та підлітками.</span></a></li>
 <li><a href="#readings"><span class="t">Читання</span><span class="d">Тим, кому цікаве розуміння себе та можливості мислення й керування собою.</span></a></li>
 <li><a href="#kino"><span class="t">Кіно-лабораторія</span><span class="d">Про авторське кіно, розбір драматургії.</span></a></li>
 <li><a href="#articles"><span class="t">Статті</span><span class="d">Про те, чого в роботі немає, про хворобу, про звичку та залежність, про дітей і підлітків, про мистецтво.</span></a></li>
@@ -304,6 +318,11 @@
     <p>Факт обращения и содержание встреч конфиденциальны.</p>
     <p>Полные условия — в <a href="#convention">конвенции</a>.</p>
 
+    <h3>Работа с парами</h3>
+    <p>Парная сессия длится около семидесяти минут и проводится очно или онлайн. На встречах присутствуют оба партнёра.</p>
+    <p>В работе с парой не ищут виноватого и не принимают чью-то сторону. Вместе можно рассмотреть, что в отношениях принадлежит каждому из двоих, а что — самим отношениям: повторяющиеся конфликты, ревность, измены, отчуждение, решение расстаться или остаться вместе.</p>
+    <p>Условия отмены, опозданий и конфиденциальности те же, что в индивидуальной работе.</p>
+
     <h3>Работа с детьми и подростками</h3>
     <p>С детьми работа ведётся очно, когда это возможно. Онлайн — начиная с восьми-девяти лет; с младшими онлайн-работа не проводится. Длительность встречи и регулярность те же, что при работе со взрослыми; стоимость не отличается.</p>
     <p>Работа ведётся с ребёнком — без родителей либо, при потребности ребёнка, в их присутствии.</p>
@@ -343,6 +362,10 @@
 <p>Оплата можлива до зустрічі або після неї; реквізити повідомляються особисто.</p>
 <p>Факти звернення та зміст зустрічей конфіденційні.</p>
 <p>Повні умови — у <a href="#convention">конвенції</a>.</p>
+<h3>Робота з парами</h3>
+<p>Парна сесія триває близько сімдесяти хвилин і проводиться очно або онлайн. На зустрічах присутні обидва партнери.</p>
+<p>У роботі з парою не шукають винного і не стають на чийсь бік. Разом можна розглянути, що у стосунках належить кожному з двох, а що — самим стосункам: повторювані конфлікти, ревнощі, зради, відчуження, рішення розійтися або залишитися разом.</p>
+<p>Умови скасування, запізнень і конфіденційності ті самі, що й в індивідуальній роботі.</p>
 <h3>Робота з дітьми та підлітками</h3>
 <p>З дітьми робота ведеться очно, коли це можливо. Онлайн — починаючи з восьми-дев'яти років; з молодшими онлайн-робота не проводиться. Тривалість зустрічі й регулярність ті самі, що й у роботі з дорослими; вартість не відрізняється.</p>
 <p>Робота ведеться з дитиною — без батьків, або за потреби дитини у їхній присутності.</p>
@@ -851,6 +874,31 @@
   var h = location.hash.slice(1);
   if (h === 'ua' || h === 'ru') { start = h; try { history.replaceState(null, '', location.pathname + location.search); } catch(e){ location.hash = ''; } }
   setLang(start);
+
+  // переключение светлой и тёмной темы
+  var themeBtn = document.getElementById('theme-btn');
+  function currentTheme(){
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function labelTheme(){
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    Array.prototype.forEach.call(themeBtn.querySelectorAll('span'), function(s){ s.textContent = s.getAttribute('data-' + next); });
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function(){
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+      labelTheme();
+    });
+    labelTheme();
+    if (window.matchMedia) {
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mq.addEventListener) mq.addEventListener('change', labelTheme);
+    }
+  }
 
   window.addEventListener('hashchange', render);
   render();
