@@ -1060,6 +1060,14 @@
     Array.prototype.forEach.call(document.querySelectorAll('.l-ua'), function(el){ el.hidden = (code !== 'ua'); });
     langLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-lang') === code); });
     try { localStorage.setItem('lang', code); } catch(e){}
+    // язык показывается в адресной строке, чтобы ссылку можно было скопировать сразу на нужном языке
+    try {
+      var u = new URL(location.href);
+      if (u.searchParams.get('lang') !== code) {
+        u.searchParams.set('lang', code);
+        history.replaceState(null, '', u.pathname + u.search + u.hash);
+      }
+    } catch(e){}
   }
   langLinks.forEach(function(a){
     a.addEventListener('click', function(ev){ ev.preventDefault(); setLang(a.getAttribute('data-lang')); });
